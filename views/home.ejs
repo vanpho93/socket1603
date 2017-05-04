@@ -2,8 +2,22 @@
 <html lang="en">
     <head>
         <title>Khoa Pham</title>
+        <script src="jquery.js"></script>
+        <script src="socket.io/socket.io.js"></script>
+        <script>
+            $(document).ready(() => {
+                const socket = io();
+                $('#btnClick').click(() => {
+                    const msg = $('#txtMessage').val();
+                    socket.emit('CLIENT_SEND_MSG', msg);
+                }); 
+                socket.on('SERVER_SEND_MSG', data => console.log(data))
+            });
+        </script>
     </head>
     <body>
         <h1>Khoa Pham Training</h1>
+        <input type="text" id="txtMessage" placeholder="Enter your message"/>
+        <button id="btnClick">CLICK</button>
     </body>
 </html>
