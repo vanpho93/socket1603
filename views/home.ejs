@@ -11,7 +11,9 @@
                     const msg = $('#txtMessage').val();
                     socket.emit('CLIENT_SEND_MSG', msg);
                 }); 
-                socket.on('SERVER_SEND_MSG', data => console.log(data))
+                socket.on('SERVER_SEND_MSG', data => {
+                    $('#ulMessage').append(`<li><p>${data}</p></li>`);
+                });
             });
         </script>
     </head>
@@ -19,5 +21,6 @@
         <h1>Khoa Pham Training</h1>
         <input type="text" id="txtMessage" placeholder="Enter your message"/>
         <button id="btnClick">CLICK</button>
+        <ul id="ulMessage"></ul>
     </body>
 </html>
